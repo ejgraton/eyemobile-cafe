@@ -9,6 +9,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -79,6 +81,12 @@ class FullscreenActivity : AppCompatActivity() {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById<Button>(R.id.dummy_button).setOnTouchListener(delayHideTouchListener)
+
+        val rvMenuList = findViewById<RecyclerView>(R.id.rvMenuList)
+        val produtos = Array(20) { Produto(null, "Produto 1", 123.45) }
+        val produtoListAdapter = ProdutoListAdapter(produtos)
+        rvMenuList.adapter = produtoListAdapter
+        rvMenuList.layoutManager = LinearLayoutManager(this)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -97,6 +105,8 @@ class FullscreenActivity : AppCompatActivity() {
             show()
         }
     }
+
+
 
     private fun hide() {
         // Hide UI first
