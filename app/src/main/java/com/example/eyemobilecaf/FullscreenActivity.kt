@@ -46,6 +46,8 @@ class FullscreenActivity : AppCompatActivity() {
     }
     private var isFullscreen: Boolean = false
 
+    private var cesta: CestaCompra? = null
+
     private val hideRunnable = Runnable { hide() }
 
     /**
@@ -83,14 +85,16 @@ class FullscreenActivity : AppCompatActivity() {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById<Button>(R.id.comprar_button).setOnTouchListener(delayHideTouchListener)
+        val comprarButton : Button = findViewById<Button>(R.id.comprar_button)
+        comprarButton.setOnTouchListener(delayHideTouchListener)
 
+        cesta = CestaCompra(comprarButton)
         var gson = Gson()
 
         val rvMenuList = findViewById<RecyclerView>(R.id.rvMenuList)
         var produtos = gson.fromJson(jsonFromAsset("cafe_xyz_menu.json"), Array<Produto>::class.java)
 
-        val produtoListAdapter = ProdutoListAdapter(produtos)
+        val produtoListAdapter = ProdutoListAdapter(produtos, cesta as CestaCompra)
         rvMenuList.adapter = produtoListAdapter
         rvMenuList.layoutManager = LinearLayoutManager(this)
     }
