@@ -1,24 +1,39 @@
 package com.example.eyemobilecaf
 
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.text.TextWatcher
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.text.NumberFormat
 
 class ProdutoListAdapter (private val dataSet: Array<Produto>) :
         RecyclerView.Adapter<ProdutoListAdapter.ViewHolder>() {
+
+    val formatarMoeda = NumberFormat.getCurrencyInstance()
 
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView
+        val tvProduto: TextView
+        val tvPreco: TextView
+        val ivProduto: ImageView
+        val textWatcher: CafeXYZTextWatcher
 
         init {
             // Define click listener for the ViewHolder's View.
-            textView = view.findViewById(R.id.textView)
+            tvProduto = view.findViewById(R.id.tvProduto)
+            tvPreco = view.findViewById(R.id.tvPreco)
+            ivProduto = view.findViewById(R.id.ivPrduto)
+
+            textWatcher = CafeXYZTextWatcher()
+            (view.findViewById(R.id.tnQtd) as EditText).addTextChangedListener( textWatcher )
         }
     }
 
@@ -33,10 +48,13 @@ class ProdutoListAdapter (private val dataSet: Array<Produto>) :
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        viewHolder.textWatcher.atualizaIndice(position)
+        val resID: Int = viewHolder.itemView.context.resources.getIdentifier(dataSet[position].ImagemAsset, "drawable", viewHolder.itemView.context.packageName)
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        //viewHolder.textView.text = dataSet[position].Nome
+        viewHolder.ivProduto.setImageResource(resID)
+        viewHolder.tvProduto.text = dataSet[position].Nome
+        viewHolder.tvPreco.text = formatarMoeda.format(dataSet[position].Preco)
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)

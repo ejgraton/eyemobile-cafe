@@ -1,0 +1,27 @@
+[
+  {
+    "ImagemAsset": "im_01_broa_1280x960",
+    "Nome": "Broa",
+    "Preco": 8.50
+  },
+  {
+    "ImagemAsset": "im_02_torta_morango_1280x960",
+    "Nome": "Tortinha de morango",
+    "Preco": 12.50
+  },
+  {
+    "ImagemAsset": "im_03_salada_de_frutas_640x480",
+    "Nome": "Salada de Frutas",
+    "Preco": 15.00
+  },
+  {
+    "ImagemAsset": "im_04_waffle_1280x960",
+    "Nome": "Waffle recheado",
+    "Preco": 7.90
+  },
+  {
+    "ImagemAsset": "im_05_fatia_bolo",
+    "Nome": "Fátia de Bolo",
+    "Preco": 10.00
+  }
+]

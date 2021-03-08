@@ -11,10 +11,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
+ *
+ * 24bbdab969be8680cb4fac7ba339cddec476c3e6
  */
 class FullscreenActivity : AppCompatActivity() {
     private lateinit var fullscreenContent: TextView
@@ -80,13 +83,26 @@ class FullscreenActivity : AppCompatActivity() {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById<Button>(R.id.dummy_button).setOnTouchListener(delayHideTouchListener)
+        findViewById<Button>(R.id.comprar_button).setOnTouchListener(delayHideTouchListener)
+
+        var gson = Gson()
 
         val rvMenuList = findViewById<RecyclerView>(R.id.rvMenuList)
-        val produtos = Array(20) { Produto(null, "Produto 1", 123.45) }
+        var produtos = gson.fromJson(jsonFromAsset("cafe_xyz_menu.json"), Array<Produto>::class.java)
+
         val produtoListAdapter = ProdutoListAdapter(produtos)
         rvMenuList.adapter = produtoListAdapter
         rvMenuList.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun jsonFromAsset(assetName: String): String {
+        val isJson = assets.open(assetName)
+        val size = isJson.available()
+        val buffer = ByteArray(size)
+        isJson.read(buffer)
+        isJson.close()
+
+        return String(buffer, Charsets.UTF_8)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {

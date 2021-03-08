@@ -45,12 +45,14 @@
             tools:ignore="UselessParent">
 
             <Button
-                android:id="@+id/dummy_button"
+                android:id="@+id/comprar_button"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:text="@string/pagar_button"
+                android:textColor="#FBF6F6"
+                android:textSize="24sp" />
 
         </LinearLayout>
     </FrameLayout>

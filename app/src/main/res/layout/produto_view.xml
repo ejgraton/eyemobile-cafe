@@ -7,38 +7,64 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/margin_medium"
     android:layout_marginRight="@dimen/margin_medium"
+    android:background="#88E5DBDB"
     android:gravity="center_vertical">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivPrduto"
         android:layout_width="@dimen/list_item_height"
         android:layout_height="@dimen/list_item_height"
         android:layout_marginStart="@dimen/margin_medium"
         android:layout_marginLeft="@dimen/margin_medium"
         android:layout_marginTop="@dimen/margin_medium"
         android:layout_marginBottom="@dimen/margin_medium"
+        android:contentDescription="@string/fotoProduto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_medium"
-        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="@dimen/margin_medium"
         android:text="@string/element_text"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/ivPrduto"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPreco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/preco"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/tvProduto"
+        app:layout_constraintTop_toBottomOf="@+id/tvProduto" />
+
+    <EditText
+        android:id="@+id/tnQtd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="3"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/tvObs"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvObs"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:gravity="start|top"
+        android:hint="@string/observacao"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvProduto"
+        app:layout_constraintTop_toBottomOf="@+id/tvPreco" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
