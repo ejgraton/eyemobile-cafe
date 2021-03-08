@@ -17,7 +17,7 @@ import com.google.gson.Gson
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  *
- * 24bbdab969be8680cb4fac7ba339cddec476c3e6
+ * 8d9d96bc1ff774b0a0cd479205c9bb73a4cc2757
  */
 class FullscreenActivity : AppCompatActivity() {
     private lateinit var fullscreenContent: TextView
