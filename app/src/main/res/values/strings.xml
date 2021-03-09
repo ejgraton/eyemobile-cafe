@@ -7,4 +7,12 @@
     <string name="fotoProduto">Foto Produto</string>
     <string name="preco">R$-,--</string>
     <string name="observacao">Observação</string>
+    <string name="title_activity_caixa">CaixaActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="total">Total: %s</string>
+    <string name="consumido">Consumido: %s</string>
+    <string name="desconto">Desconto</string>
+    <string name="entrar_valor">Valor Pago</string>
 </resources>

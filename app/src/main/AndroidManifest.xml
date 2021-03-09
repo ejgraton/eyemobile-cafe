@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EyemobileCafé">
         <activity
+            android:name=".CaixaActivity"
+            android:exported="true"
+            android:label="@string/title_activity_caixa"></activity>
+        <activity
             android:name=".FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"

@@ -2,6 +2,7 @@ package com.example.eyemobilecaf
 
 import androidx.appcompat.app.AppCompatActivity
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.MotionEvent
@@ -87,8 +88,19 @@ class FullscreenActivity : AppCompatActivity() {
         // while interacting with the UI.
         val comprarButton : Button = findViewById<Button>(R.id.comprar_button)
         comprarButton.setOnTouchListener(delayHideTouchListener)
+        comprarButton.setOnClickListener { showCaixa() }
 
         cesta = CestaCompra(comprarButton)
+        cesta?.setCestaListener(object: CestaCompra.ICestaCompraListener{
+            override fun MovimentoNaCesta(cesta: CestaCompra) {
+                if(cesta.TotalCompra() == 0.0)
+                    hide()
+                else
+                    show()
+            }
+
+        })
+
         var gson = Gson()
 
         val rvMenuList = findViewById<RecyclerView>(R.id.rvMenuList)
@@ -149,6 +161,13 @@ class FullscreenActivity : AppCompatActivity() {
         // Schedule a runnable to display UI elements after a delay
         hideHandler.removeCallbacks(hidePart2Runnable)
         hideHandler.postDelayed(showPart2Runnable, UI_ANIMATION_DELAY.toLong())
+    }
+
+    private fun showCaixa() {
+        val intent = Intent(this, CaixaActivity::class.java).apply {
+            putExtra("VALOR_CONSUMO", cesta?.TotalCompra())
+        }
+        startActivity(intent)
     }
 
     /**
